@@ -1,6 +1,5 @@
 package com.github.JoaoPem.computacaodistribuida.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,7 +19,6 @@ public class UserAccount {
     private String name;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private List<Playlist> playlists = new ArrayList<>();
 
 }

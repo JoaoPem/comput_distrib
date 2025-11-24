@@ -1,7 +1,5 @@
 package com.github.JoaoPem.computacaodistribuida.dtos.playlists;
 
-import com.github.JoaoPem.computacaodistribuida.models.Music;
-
 import java.util.List;
 
 public record PlaylistResponseDTO(

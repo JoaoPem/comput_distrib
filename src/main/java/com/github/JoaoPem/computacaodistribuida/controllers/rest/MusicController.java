@@ -1,4 +1,4 @@
-package com.github.JoaoPem.computacaodistribuida.controllers;
+package com.github.JoaoPem.computacaodistribuida.controllers.rest;
 
 import com.github.JoaoPem.computacaodistribuida.dtos.musics.MusicRequestDTO;
 import com.github.JoaoPem.computacaodistribuida.dtos.musics.MusicResponseDTO;
@@ -11,7 +11,6 @@ import com.github.JoaoPem.computacaodistribuida.services.MusicService;
 import com.github.JoaoPem.computacaodistribuida.services.PlaylistService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

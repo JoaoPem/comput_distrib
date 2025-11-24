@@ -1,4 +1,4 @@
-package com.github.JoaoPem.computacaodistribuida.controllers;
+package com.github.JoaoPem.computacaodistribuida.controllers.rest;
 
 import com.github.JoaoPem.computacaodistribuida.dtos.musics.MusicResponseDTO;
 import com.github.JoaoPem.computacaodistribuida.dtos.playlists.PlaylistRequestDTO;
