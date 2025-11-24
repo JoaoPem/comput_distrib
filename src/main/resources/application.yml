@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: ComputacaoDistribuida
+  datasource:
+    url: jdbc:postgresql://localhost:5432/comp_dist
+    username: postgres
+    password: postgres
