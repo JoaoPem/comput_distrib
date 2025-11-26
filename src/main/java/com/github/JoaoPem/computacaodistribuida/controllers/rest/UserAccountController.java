@@ -48,4 +48,5 @@ public class UserAccountController {
         List<PlaylistResponseDTO> playlistDtoList = playlistMapper.toDtoList(playlists);
         return ResponseEntity.ok(playlistDtoList);
     }
+
 }

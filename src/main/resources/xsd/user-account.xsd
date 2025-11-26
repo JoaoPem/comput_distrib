@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/users/soap"
+           xmlns:tns="http://example.com/users/soap"
+           elementFormDefault="qualified">
+
+    <!-- Request -->
+    <xs:element name="GetAllUsersRequest">
+        <xs:complexType/>
+    </xs:element>
+
+    <!-- Response -->
+    <xs:element name="GetAllUsersResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="users" type="tns:UserAccount" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- DTO SOAP -->
+    <xs:complexType name="UserAccount">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
