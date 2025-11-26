@@ -53,4 +53,19 @@ public class WebServiceConfig {
         return new SimpleXsdSchema(new ClassPathResource("xsd/music.xsd"));
     }
 
+    @Bean(name = "playlist")
+    public DefaultWsdl11Definition playlistWsdlDefinition(XsdSchema playlistSchema) {
+        DefaultWsdl11Definition wsdl = new DefaultWsdl11Definition();
+        wsdl.setPortTypeName("PlaylistPort");
+        wsdl.setLocationUri("/soap");
+        wsdl.setTargetNamespace("http://example.com/playlists/soap");
+        wsdl.setSchema(playlistSchema);
+        return wsdl;
+    }
+
+    @Bean
+    public XsdSchema playlistSchema() {
+        return new SimpleXsdSchema(new ClassPathResource("xsd/playlist.xsd"));
+    }
+
 }
