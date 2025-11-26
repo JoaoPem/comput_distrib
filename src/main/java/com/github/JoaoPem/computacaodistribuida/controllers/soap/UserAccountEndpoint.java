@@ -1,9 +1,10 @@
 package com.github.JoaoPem.computacaodistribuida.controllers.soap;
 
-import com.example.users.soap.GetAllUsersRequest;
-import com.example.users.soap.GetAllUsersResponse;
-import com.example.users.soap.UserAccount;
+import com.example.users.soap.*;
+
+import com.github.JoaoPem.computacaodistribuida.services.PlaylistService;
 import com.github.JoaoPem.computacaodistribuida.services.UserAccountService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -19,6 +20,8 @@ public class UserAccountEndpoint {
     private static final String NAMESPACE_URI = "http://example.com/users/soap";
 
     private final UserAccountService userAccountService;
+    private final PlaylistService playlistService;
+
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetAllUsersRequest")
     @ResponsePayload
@@ -36,4 +39,32 @@ public class UserAccountEndpoint {
 
         return response;
     }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "GetUserPlaylistsRequest")
+    @ResponsePayload
+    @Transactional
+    public GetUserPlaylistsResponse getUserPlaylists(@RequestPayload GetUserPlaylistsRequest request) {
+        Long userId = request.getUserId();
+
+        List<com.github.JoaoPem.computacaodistribuida.models.Playlist> playlists =
+                playlistService.listPlaylistsByUserId(userId);
+
+        GetUserPlaylistsResponse response = new GetUserPlaylistsResponse();
+
+        playlists.forEach(playlistEntity -> {
+            Playlist soapPlaylist = new Playlist();
+            soapPlaylist.setId(playlistEntity.getId());
+            soapPlaylist.setName(playlistEntity.getName());
+            soapPlaylist.setUserAccountName(playlistEntity.getUser().getName());
+
+            playlistEntity.getMusicList().forEach(music ->
+                    soapPlaylist.getMusicNameList().add(music.getName())
+            );
+
+            response.getPlaylists().add(soapPlaylist);
+        });
+
+        return response;
+    }
+
 }
