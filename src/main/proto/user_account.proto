@@ -6,9 +6,14 @@ option java_outer_classname = "UserAccountProto";
 
 service UserAccountService {
   rpc ListAllUserAccounts (EmptyRequest) returns (UserAccountListResponse);
+  rpc ListUserPlaylists (UserIdRequest) returns (PlaylistListResponse);
 }
 
 message EmptyRequest {}
+
+message UserIdRequest {
+  int64 userId = 1;
+}
 
 message UserAccount {
   int64 id = 1;
@@ -17,4 +22,15 @@ message UserAccount {
 
 message UserAccountListResponse {
   repeated UserAccount users = 1;
+}
+
+message Playlist {
+  int64 id = 1;
+  string name = 2;
+  string userAccountName = 3;
+  repeated string musicNameList = 4;
+}
+
+message PlaylistListResponse {
+  repeated Playlist playlists = 1;
 }
